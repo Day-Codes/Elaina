@@ -14,7 +14,7 @@ module.exports = class extends Event {
 		const customPrefix = guildData ? guildData.prefix : this.client.prefix;
 
 		if (message.content.match(mentionRegex)) {
-			message.quote(`Hello **${message.author.username}**, my prefix on this server is \`${customPrefix}\`.\nUse \`${customPrefix}help\` to get the list of the commands!`);
+			message.reply(`Hello **${message.author.username}**, my prefix on this server is \`${customPrefix}\`.\nUse \`${customPrefix}help\` to get the list of the commands!`);
 		}
 
 		const userData = await this.client.findOrCreateUser({ id: message.author.id });
@@ -24,14 +24,14 @@ module.exports = class extends Event {
 			if (afkReason) {
 				userData.afk = null;
 				await userData.save();
-				message.quote(`**${message.author.username}**, your AFK status has just been deleted!`);
+				message.reply(`**${message.author.username}**, your AFK status has just been deleted!`);
 			}
 
 			message.mentions.users.forEach(async (user) => {
 				// eslint-disable-next-line no-shadow
 				const userData = await this.client.findOrCreateUser({ id: user.id });
 				if (userData.afk) {
-					message.quote(`**${user.tag}** is currently AFK!\nReason: ${userData.afk}`);
+					message.reply(`**${user.tag}** is currently AFK!\nReason: ${userData.afk}`);
 				}
 			});
 		}
@@ -49,7 +49,7 @@ module.exports = class extends Event {
 				if (userPermCheck) {
 					const missing = message.channel.permissionsFor(message.member).missing(userPermCheck);
 					if (missing.length) {
-						return message.quote(`You're missing ${this.client.utils.formatArray(missing.map(this.client.utils.formatPerms))} permissions, you need them to use this command.`);
+						return message.reply(`You're missing ${this.client.utils.formatArray(missing.map(this.client.utils.formatPerms))} permissions, you need them to use this command.`);
 					}
 				}
 
@@ -57,21 +57,21 @@ module.exports = class extends Event {
 				if (clientPermCheck) {
 					const missing = message.channel.permissionsFor(message.guild.me).missing(clientPermCheck);
 					if (missing.length) {
-						return message.quote(`I'm missing ${this.client.utils.formatArray(missing.map(this.client.utils.formatPerms))} permissions, I need them to use this command.`);
+						return message.reply(`I'm missing ${this.client.utils.formatArray(missing.map(this.client.utils.formatPerms))} permissions, I need them to use this command.`);
 					}
 				}
 
 				if (command.nsfw && !message.channel.nsfw) {
-					return message.quote('This command can only be ran in a NSFW marked channel.');
+					return message.reply('This command can only be ran in a NSFW marked channel.');
 				}
 			}
 
 			if (command.disabled) {
-				return message.quote('This command is currently disabled!');
+				return message.reply('This command is currently disabled!');
 			}
 
 			if (command.ownerOnly && !this.client.utils.checkOwner(message.author.id)) {
-				return message.quote('Only developers can use this command.');
+				return message.reply('Only developers can use this command.');
 			}
 
 			if (!this.client.cooldowns.has(command.name)) {
@@ -101,7 +101,7 @@ module.exports = class extends Event {
 				}
 			} catch (err) {
 				console.log(err);
-				return message.quote('Something went wrong... Please retry again later!');
+				return message.reply('Something went wrong... Please retry again later!');
 			}
 		}
 	}

@@ -20,7 +20,7 @@ module.exports = class extends Command {
 	async run(message, args) {
 		const query = args.join(' ').trim();
 		if (!query) {
-			return message.quote('Please provide query to search on YouTube');
+			return message.reply('Please provide query to search on YouTube');
 		}
 
 		try {
@@ -38,7 +38,7 @@ module.exports = class extends Command {
 
 			return message.channel.send({ embeds: [embed] });
 		} catch {
-			return message.quote('No results were found!');
+			return message.reply('No results were found!');
 		}
 	}
 

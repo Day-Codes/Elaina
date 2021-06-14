@@ -23,7 +23,7 @@ module.exports = class extends Command {
 		});
 
 		const query = args.join(' ').trim();
-		if (!query) return message.quote('Please enter the song title to search!');
+		if (!query) return message.reply('Please enter the song title to search!');
 
 		const response = await spotify.search({ type: 'track', query: query });
 		const track = response.tracks.items[0];

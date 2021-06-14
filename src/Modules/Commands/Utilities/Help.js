@@ -28,7 +28,7 @@ module.exports = class extends Command {
 		if (command) {
 			const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
 
-			if (!cmd) return message.quote(`Invalid Command named. \`${command}\``);
+			if (!cmd) return message.reply(`Invalid Command named. \`${command}\``);
 
 			embed.setAuthor(`Commands | ${cmd.name.toProperCase()}`, 'https://i.imgur.com/YxoUvH8.png');
 			embed.setDescription([

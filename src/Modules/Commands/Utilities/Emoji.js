@@ -19,7 +19,7 @@ module.exports = class extends Command {
 		const regex = emote.replace(/^<a?:\w+:(\d+)>$/, '$1');
 
 		const emoji = message.guild.emojis.cache.find((emj) => emj.name === emote || emj.id === regex);
-		if (!emoji) return message.quote('Please provide a custom emoji!');
+		if (!emoji) return message.reply('Please provide a custom emoji!');
 
 		const authorFetch = await emoji.fetchAuthor();
 		const checkOrCross = (bool) => bool ? 'Yes' : 'No';

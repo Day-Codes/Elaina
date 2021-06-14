@@ -21,7 +21,7 @@ module.exports = class extends Command {
 	async run(message, [time]) {
 		if (!this.client.lockit) this.client.lockit = [];
 		if (!time) {
-			return message.quote('A duration for the lockdown must be set!');
+			return message.reply('A duration for the lockdown must be set!');
 		}
 
 		const roleColor = message.guild.me.roles.highest.hexColor;

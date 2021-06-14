@@ -17,7 +17,7 @@ module.exports = class extends Command {
 
 	async run(message, [query]) {
 		if (!query) {
-			return message.quote('Please enter a username to start searching!');
+			return message.reply('Please enter a username to start searching!');
 		}
 
 		try {
@@ -43,7 +43,7 @@ module.exports = class extends Command {
 
 			return message.channel.send({ embeds: [embed] });
 		} catch {
-			return message.quote('Username not found, please make sure you write it correctly!');
+			return message.reply('Username not found, please make sure you write it correctly!');
 		}
 	}
 

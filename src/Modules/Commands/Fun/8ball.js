@@ -17,7 +17,7 @@ module.exports = class extends Command {
 
 	async run(message, args) {
 		if (!args[1]) {
-			return message.quote('Please enter a question to determine your destiny!');
+			return message.reply('Please enter a question to determine your destiny!');
 		}
 
 		const RatingArray = ['Low', 'Medium', 'High'];
