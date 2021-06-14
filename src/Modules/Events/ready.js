@@ -31,7 +31,7 @@ module.exports = class extends Event {
 
 		let i = 0;
 		setInterval(() => {
-			this.client.user.setPresence({ activity: { type: 'PLAYING', name: `${activities[i++ % activities.length]} | v${version}` } });
+			this.client.user.setPresence({ activities: [{ type: 'PLAYING', name: `${activities[i++ % activities.length]} | v${version}` }] });
 		}, 20000);
 	}
 
