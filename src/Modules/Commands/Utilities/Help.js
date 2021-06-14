@@ -40,7 +40,7 @@ module.exports = class extends Command {
 				`***Cooldown:*** ${cmd.cooldown / 1000} seconds`
 			].join('\n'));
 
-			return message.channel.send(embed);
+			return message.channel.send({ embeds: [embed] });
 		} else {
 			embed.setDescription([
 				`These are the available commands for ${this.client.user.username}.`,
@@ -58,7 +58,7 @@ module.exports = class extends Command {
 				}
 			}
 
-			return message.channel.send(embed);
+			return message.channel.send({ embeds: [embed] });
 		}
 	}
 

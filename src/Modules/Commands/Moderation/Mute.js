@@ -91,7 +91,7 @@ module.exports = class extends Command {
 				].join('\n'))
 				.setFooter(`Moderation system powered by ${this.client.user.username}`, this.client.user.avatarURL({ dynamic: true }));
 
-			sendChannel.send(embed);
+			sendChannel.send({ embeds: [embed] });
 		}
 	}
 

@@ -20,7 +20,7 @@ module.exports = class extends Event {
 
 		// eslint-disable-next-line no-process-env
 		const sendChannel = this.client.channels.cache.get(process.env.GUILD_LOGS);
-		sendChannel.send(embed);
+		sendChannel.send({ embeds: [embed] });
 
 		const directEmbed = new MessageEmbed()
 			.setColor(Colors.DEFAULT)
@@ -33,7 +33,7 @@ module.exports = class extends Event {
 			].join('\n'))
 			.setTimestamp();
 
-		guild.owner.send(directEmbed);
+		guild.owner.send({ embeds: [directEmbed] });
 	}
 
 };

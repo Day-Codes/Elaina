@@ -18,7 +18,7 @@ module.exports = class extends Event {
 
 		// eslint-disable-next-line no-process-env
 		const sendChannel = this.client.channels.cache.get(process.env.GUILD_LOGS);
-		sendChannel.send(embed);
+		sendChannel.send({ embeds: [embed] });
 	}
 
 };

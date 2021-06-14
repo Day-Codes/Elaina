@@ -30,7 +30,7 @@ module.exports = class extends Command {
 			embed.setTitle('Available Languages');
 			embed.setDescription(`\`\`\`JSON\n${JSON.stringify(translator).replace(/[{}]/g, '').split(',').join(',\n')}\`\`\``);
 
-			return message.channel.send(embed).then(msg => msg.delete({ timeout: 60000 }));
+			return message.channel.send({ embeds: [embed] });
 		}
 
 		if (!target) return message.quote(`Please provide the desired language!\nTo display a list of languages, type \`${prefix}translate lang\` !`);
@@ -52,7 +52,7 @@ module.exports = class extends Command {
 			`Translation from ***${translator[translated.from.language.iso]}*** to ***${translator[language]}***`
 		].join('\n'));
 
-		return message.channel.send(embed);
+		return message.channel.send({ embeds: [embed] });
 	}
 
 };

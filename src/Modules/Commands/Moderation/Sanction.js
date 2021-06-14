@@ -40,7 +40,7 @@ module.exports = class extends Command {
 			});
 		}
 
-		return message.channel.send(embed);
+		return message.channel.send({ embeds: [embed] });
 	}
 
 };
